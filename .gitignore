@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-AliOssUtil.java
+src/main/java/org/design/tradewatch/Util/AliOssUtil.java
