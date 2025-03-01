@@ -3,6 +3,7 @@ package org.design.tradewatch.Controller;
 import org.design.tradewatch.Entity.Account;
 import org.design.tradewatch.Entity.Result;
 import org.design.tradewatch.Service.AccountService;
+import org.design.tradewatch.Service.UserService;
 import org.design.tradewatch.Util.JwtUtil;
 import org.design.tradewatch.Util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,15 @@ public class AccountController {
     private AccountService accountService;
      @Autowired
     private StringRedisTemplate stringRedisTemplate;
-
+    @Autowired
+    private UserService userService;
     @PostMapping("/register")
     public Result register(@RequestParam String username, String password, Integer type) {
         Account account = accountService.findByUsername(username);
         if (account == null) {
             String MD5password =Md5Util.getMD5String(password);
             accountService.register(username, MD5password,type);
+            userService.addUser(username);
             return Result.success();
         } else {
             return Result.error("用户名被占用");

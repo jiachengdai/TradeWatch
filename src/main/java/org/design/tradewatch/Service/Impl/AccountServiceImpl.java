@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl implements AccountService {
     @Autowired
-    private AccountMapper userMapper;
+    private AccountMapper accountMapper;
 
     @Override
     public Account findByUsername(String username) {
-     return   userMapper.findByUsername(username);
+     return   accountMapper.findByUsername(username);
     }
 
     @Override
     public void register(String username, String password, Integer type) {
-        userMapper.register(username,password,type);
-        return;
+        accountMapper.register(username,password,type);
+
     }
 }
