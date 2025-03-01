@@ -28,7 +28,8 @@ public class AccountController {
     public Result register(@RequestParam String username, String password, Integer type) {
         Account account = accountService.findByUsername(username);
         if (account == null) {
-            accountService.register(username, password,type);
+            String MD5password =Md5Util.getMD5String(password);
+            accountService.register(username, MD5password,type);
             return Result.success();
         } else {
             return Result.error("用户名被占用");
