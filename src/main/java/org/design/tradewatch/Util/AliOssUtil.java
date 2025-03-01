@@ -15,7 +15,7 @@ public class AliOssUtil {
     // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_IDLTAI5tM3k6fsz5UWh7VMETcQ和OSS_ACCESS_KEY_SECRETOQ3RuCWiOCuZw9Ixs4B8lz2pkvMmyW。
     //EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
     private static final String ACCESS_KEY_ID="";
-    private static final String ACCESS_SECRETE="OQ3RuCWiOCuZw9Ixs4B8lz2pkvMmyW";
+    private static final String ACCESS_SECRETE="";
     // 填写Bucket名称，例如examplebucketbig-event0713。
     private static final String BUCKET_NAME = "";
 
