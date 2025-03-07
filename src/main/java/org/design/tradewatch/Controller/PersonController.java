@@ -2,6 +2,7 @@ package org.design.tradewatch.Controller;
 
 import org.design.tradewatch.Entity.Person;
 import org.design.tradewatch.Entity.Result;
+import org.design.tradewatch.Repository.GraphRepository;
 import org.design.tradewatch.Repository.PersonRepository;
 import org.springframework.web.bind.annotation.*;
 
