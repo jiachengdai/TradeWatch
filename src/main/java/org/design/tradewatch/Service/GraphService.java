@@ -7,19 +7,21 @@ import org.design.tradewatch.Entity.SubGraph;
 import java.util.List;
 
 public interface GraphService {
-    List<NodeEntity> getNodes(Long graphId);
+    List<NodeEntity> getNodes(Long graphId,String graphType);
 
     void runCQL(List<String> cql);
 
-    List<RelationshipEntity> getRelations(Long graphId);
+    List<RelationshipEntity> getRelations(Long graphId,String graphType);
 
     void saveSubGraph(SubGraph subGraph);
 
-    Integer getLatestGraphId();
+    Integer getLatestSubGraphId();
 
     SubGraph getSubGraphInfo(Long gid);
 
     List<SubGraph> getAllSubGraphs();
 
     void upateSubGraph(Long gid, SubGraph subGraph);
+    Integer makeNewReportGraph();
+
 }

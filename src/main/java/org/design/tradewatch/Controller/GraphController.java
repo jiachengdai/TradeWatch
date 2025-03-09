@@ -17,14 +17,14 @@ public class GraphController {
 @Autowired
     private GraphService graphService;
 @GetMapping("/nodes")
-    public Result getNodes(@RequestParam Long graphId){
-    List<NodeEntity> nodes = graphService.getNodes(graphId);
+    public Result getNodes(@RequestParam Long graphId,String graphType){
+    List<NodeEntity> nodes = graphService.getNodes(graphId,graphType);
     return Result.success(nodes);
 }
 
 @GetMapping("/relations")
-public Result getRelations(@RequestParam Long graphId){
-    List<RelationshipEntity>relations=graphService.getRelations(graphId);
+public Result getRelations(@RequestParam Long graphId,String graphType){
+    List<RelationshipEntity>relations=graphService.getRelations(graphId,graphType);
     return Result.success(relations);
 }
     @PostMapping("/runCQL")
@@ -40,9 +40,9 @@ public Result getRelations(@RequestParam Long graphId){
     graphService.saveSubGraph(subGraph);
     return Result.success();
     }
-    @GetMapping("/latestGraphId")
+    @GetMapping("/latestSubGraphId")
     public Result getLatestGraphId(){
-    Integer ans= graphService.getLatestGraphId();
+    Integer ans= graphService.getLatestSubGraphId();
     return Result.success(ans);
     }
     @GetMapping("/subGraphInfo")

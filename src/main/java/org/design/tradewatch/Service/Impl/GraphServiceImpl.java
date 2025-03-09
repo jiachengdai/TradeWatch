@@ -23,8 +23,8 @@ public class GraphServiceImpl implements GraphService {
     @Autowired
     private GraphMapper graphMapper;
     @Override
-    public List<NodeEntity> getNodes(Long graphId) {
-         return graphRepository.getNodes(graphId);
+    public List<NodeEntity> getNodes(Long graphId,String graphType) {
+         return graphRepository.getNodes(graphId,graphType);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class GraphServiceImpl implements GraphService {
     }
 
     @Override
-    public List<RelationshipEntity> getRelations(Long graphId) {
-         return graphRepository.getRelations(graphId);
+    public List<RelationshipEntity> getRelations(Long graphId,String graphType) {
+         return graphRepository.getRelations(graphId,graphType);
     }
 
     @Override
@@ -50,11 +50,19 @@ public class GraphServiceImpl implements GraphService {
     }
 
     @Override
-    public Integer getLatestGraphId() {
+    public Integer getLatestSubGraphId() {
         Integer latestId= graphMapper.getLatestGraphId();
-        graphRepository.newGraph(latestId);
+        graphRepository.newGraph(latestId,"sub");
         return latestId;
     }
+    @Override
+    public Integer makeNewReportGraph() {
+        Integer latestId= graphMapper.getLatestGraphId();
+        graphRepository.newGraph(latestId,"report");
+        return latestId;
+    }
+
+
 
     @Override
     public SubGraph getSubGraphInfo(Long gid) {
@@ -70,4 +78,6 @@ public class GraphServiceImpl implements GraphService {
     public void upateSubGraph(Long gid, SubGraph subGraph) {
         graphMapper.updateSubGraph(gid,subGraph);
     }
+
+
 }

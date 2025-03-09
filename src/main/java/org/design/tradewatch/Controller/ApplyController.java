@@ -20,7 +20,7 @@ public class ApplyController {
     @PostMapping("/new")
     public Result newApply(@RequestParam MultipartFile file,String algorithm, String datawrite, String multialgo) throws InterruptedException {
         applyService.newApply(algorithm,datawrite,multialgo);
-        reportService.getReport(file,algorithm,datawrite,multialgo);
+        reportService.makeReport(file,algorithm,datawrite,multialgo);
         return Result.success();
     }
 }
