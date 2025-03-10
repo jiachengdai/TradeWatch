@@ -1,6 +1,5 @@
 package org.design.tradewatch.Service.Impl;
 
-import org.design.tradewatch.Controller.DataController;
 import org.design.tradewatch.Entity.EveryDayTrade;
 import org.design.tradewatch.Entity.TradeTypeStatic;
 import org.design.tradewatch.Mapper.DataMapper;
