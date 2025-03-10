@@ -24,4 +24,7 @@ public interface GraphService {
     void upateSubGraph(Long gid, SubGraph subGraph);
     Integer makeNewReportGraph();
 
+    List<RelationshipEntity> getAllAvailableRelations();
+
+    List<NodeEntity> getAllAvailableNodes();
 }

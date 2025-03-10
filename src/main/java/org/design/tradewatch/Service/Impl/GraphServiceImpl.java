@@ -51,17 +51,26 @@ public class GraphServiceImpl implements GraphService {
 
     @Override
     public Integer getLatestSubGraphId() {
-        Integer latestId= graphMapper.getLatestGraphId();
+        Integer latestId= graphMapper.getLatestSubGraphId();
         graphRepository.newGraph(latestId,"sub");
         return latestId;
     }
     @Override
     public Integer makeNewReportGraph() {
-        Integer latestId= graphMapper.getLatestGraphId();
+        Integer latestId= graphMapper.getLatestReportGraphId();
         graphRepository.newGraph(latestId,"report");
         return latestId;
     }
 
+    @Override
+    public List<RelationshipEntity> getAllAvailableRelations() {
+        return  graphRepository.getAllAvailableRelations();
+    }
+
+    @Override
+    public List<NodeEntity> getAllAvailableNodes() {
+        return  graphRepository.getAllAvailableNodes();
+    }
 
 
     @Override

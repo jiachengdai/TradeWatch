@@ -37,6 +37,7 @@ public class ReportServiceImpl implements ReportService {
 
         Integer reportId=reportMapper.getLatestReportId();
         Integer graphId=graphService.makeNewReportGraph();
+
         makeReportContent(reportId,graphId);
 
     }
@@ -47,7 +48,8 @@ public class ReportServiceImpl implements ReportService {
     List<String>cqls=new ArrayList<>();
     cqls.add("CREATE (n:Node {id: 20 ,gid:"+graphId+" ,name: 'cc', age:1, color: 'ff'})");
     cqls.add(" MATCH (g:Graph {graph_id: "+graphId+",graph_type:\"report\"}), (n:Node {id: 20,gid:"+graphId+"}) CREATE (g)-[:CONTAINS]->(n)");
-    graphService.runCQL(cqls);
+
+        graphService.runCQL(cqls);
     String reportText="Aaa";
     Integer itema=50,itemb=50,itemc=50;
     reportMapper.newReportContent(reportId,graphId,itema,itemb,itemc,reportText);

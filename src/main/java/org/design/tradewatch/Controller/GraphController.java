@@ -27,6 +27,16 @@ public Result getRelations(@RequestParam Long graphId,String graphType){
     List<RelationshipEntity>relations=graphService.getRelations(graphId,graphType);
     return Result.success(relations);
 }
+@GetMapping("/allAvailableRelations")
+public Result getAllAvailableRelations(){
+    List<RelationshipEntity>relations=graphService.getAllAvailableRelations( );
+    return Result.success(relations);
+}
+    @GetMapping("/allAvailableNodes")
+    public Result getAllAvailableNodes(){
+        List<NodeEntity> nodes = graphService.getAllAvailableNodes();
+        return Result.success(nodes);
+    }
     @PostMapping("/runCQL")
     public Result runCQL(@RequestBody CQLRequest cqlRequest) {
 
