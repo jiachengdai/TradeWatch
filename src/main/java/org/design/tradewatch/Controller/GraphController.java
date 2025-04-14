@@ -1,40 +1,52 @@
 package org.design.tradewatch.Controller;
 
-import org.design.tradewatch.Entity.NodeEntity;
-import org.design.tradewatch.Entity.RelationshipEntity;
-import org.design.tradewatch.Entity.Result;
-import org.design.tradewatch.Entity.SubGraph;
+import org.design.tradewatch.Entity.*;
 import org.design.tradewatch.Service.GraphService;
+import org.design.tradewatch.Service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/graph")
 public class GraphController {
 @Autowired
-    private GraphService graphService;
-@GetMapping("/nodes")
-    public Result getNodes(@RequestParam Long graphId,String graphType){
-    List<NodeEntity> nodes = graphService.getNodes(graphId,graphType);
+private GraphService graphService;
+@Autowired
+private ReportService reportService;
+
+@GetMapping("/getAccountNodes")
+    public Result getAccountNodes(@RequestParam Integer reportId){
+    String reportName=reportService.getReportName(reportId);
+    List<AccountNodeEntity> nodes = graphService.getAccountNodes(reportName);
     return Result.success(nodes);
 }
+@GetMapping("/getTransactionNodes")
+public Result getTransactionNodes(@RequestParam Integer reportId){
+    String reportName=reportService.getReportName(reportId);
+        List<TransactionNodeEntity> nodes = graphService.getTransactionNodes(reportName);
+        return Result.success(nodes);
+}
 
-@GetMapping("/relations")
-public Result getRelations(@RequestParam Long graphId,String graphType){
-    List<RelationshipEntity>relations=graphService.getRelations(graphId,graphType);
+@GetMapping("/getSubEdges")
+public Result getSubEdges(@RequestParam Long graphId, String graphType){
+    List<SubGraphEdgeEntity>relations=graphService.getSubEdges(graphId,graphType);
     return Result.success(relations);
+}
+@GetMapping("/getSubNodes")
+public Result getSubNodes(@RequestParam Long graphId, String graphType){
+    List<SubNodeEntity> nodes = graphService.getSubNodes(graphId,graphType);
+    return Result.success(nodes);
 }
 @GetMapping("/allAvailableRelations")
 public Result getAllAvailableRelations(){
-    List<RelationshipEntity>relations=graphService.getAllAvailableRelations( );
+    List<SubGraphEdgeEntity>relations=graphService.getAllAvailableRelations( );
     return Result.success(relations);
 }
     @GetMapping("/allAvailableNodes")
     public Result getAllAvailableNodes(){
-        List<NodeEntity> nodes = graphService.getAllAvailableNodes();
+        List<AccountNodeEntity> nodes = graphService.getAllAvailableNodes();
         return Result.success(nodes);
     }
     @PostMapping("/runCQL")
@@ -71,6 +83,17 @@ public Result getAllAvailableRelations(){
     {
         graphService.upateSubGraph(gid,subGraph);
         return Result.success();
+    }
+
+    @GetMapping("/getTradeTypeNode")
+    public  Result getTradeTypeNode (@RequestParam Long gid ,String graphType ,String tradeType){
+        List<AccountNodeEntity>nodeEntities= graphService.getTradeTypeNode(gid,graphType,tradeType);
+        return Result.success(nodeEntities);
+    }
+    @GetMapping("/getTradeTypeLinks")
+    public Result getTradeTypeLinks(@RequestParam Long gid,String graphType,String tradeType){
+        List<SubGraphEdgeEntity>relationshipEntities=graphService.getTradeLinksService(gid,graphType,tradeType);
+        return Result.success(relationshipEntities);
     }
     public static class CQLRequest {
         private List<String> cqls;

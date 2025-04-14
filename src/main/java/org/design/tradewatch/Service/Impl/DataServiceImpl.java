@@ -24,17 +24,15 @@ public class DataServiceImpl implements DataService {
       List<TradeTypeStatic>tradeTypeStatics=  dataMapper.getTypeStatic();
       for(TradeTypeStatic tradeTypeStatic:tradeTypeStatics){
           if(tradeTypeStatic.getType()==0){
-              tradeTypeStatic.setName("庞氏骗局");
+              tradeTypeStatic.setName("非法汇兑");
           }
           else if (tradeTypeStatic.getType()==1){
-              tradeTypeStatic.setName("洗钱");
+              tradeTypeStatic.setName("非法集资");
           }
           else if (tradeTypeStatic.getType()==2){
-              tradeTypeStatic.setName("电信诈骗");
+              tradeTypeStatic.setName("诈骗传销");
           }
-          else if (tradeTypeStatic.getType()==3){
-              tradeTypeStatic.setName("频繁交易");
-          }
+
           else{
               tradeTypeStatic.setName("其他");
           }

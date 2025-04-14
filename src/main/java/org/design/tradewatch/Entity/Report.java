@@ -8,7 +8,7 @@ public class Report {
     private String updatetime;
     private Integer grade;
     private Integer dangernum;
-    private String graph;
+    private String algorithm;
     private String reportUrl;
 
     @Override
@@ -19,7 +19,7 @@ public class Report {
                 ", updatetime='" + updatetime + '\'' +
                 ", grade=" + grade +
                 ", dangernum=" + dangernum +
-                ", graph='" + graph + '\'' +
+                ", algorithm='" + algorithm + '\'' +
                 ", reportUrl='" + reportUrl + '\'' +
                 '}';
     }
@@ -29,12 +29,12 @@ public class Report {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Report report = (Report) o;
-        return Objects.equals(id, report.id) && Objects.equals(reportname, report.reportname) && Objects.equals(updatetime, report.updatetime) && Objects.equals(grade, report.grade) && Objects.equals(dangernum, report.dangernum) && Objects.equals(graph, report.graph) && Objects.equals(reportUrl, report.reportUrl);
+        return Objects.equals(id, report.id) && Objects.equals(reportname, report.reportname) && Objects.equals(updatetime, report.updatetime) && Objects.equals(grade, report.grade) && Objects.equals(dangernum, report.dangernum) && Objects.equals(algorithm, report.algorithm) && Objects.equals(reportUrl, report.reportUrl);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, reportname, updatetime, grade, dangernum, graph, reportUrl);
+        return Objects.hash(id, reportname, updatetime, grade, dangernum, algorithm, reportUrl);
     }
 
     public Integer getId() {
@@ -77,12 +77,12 @@ public class Report {
         this.dangernum = dangernum;
     }
 
-    public String getGraph() {
-        return graph;
+    public String getAlgorithm() {
+        return algorithm;
     }
 
-    public void setGraph(String graph) {
-        this.graph = graph;
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
     }
 
     public String getReportUrl() {

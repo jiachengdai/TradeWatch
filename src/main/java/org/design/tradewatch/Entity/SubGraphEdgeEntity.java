@@ -2,24 +2,23 @@ package org.design.tradewatch.Entity;
 
 import org.springframework.data.neo4j.core.schema.RelationshipId;
 import org.springframework.data.neo4j.core.schema.RelationshipProperties;
-import org.springframework.data.neo4j.core.schema.TargetNode;
 
 import java.util.Objects;
 
 @RelationshipProperties
-public class RelationshipEntity {
+public class SubGraphEdgeEntity {
     @RelationshipId
     private Long relationshipId;
     private String relationshipName;
     private Long relationshipWeight;
-    private NodeEntity source;
-    private NodeEntity target;
+    private AccountNodeEntity source;
+    private AccountNodeEntity target;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RelationshipEntity that = (RelationshipEntity) o;
+        SubGraphEdgeEntity that = (SubGraphEdgeEntity) o;
         return Objects.equals(relationshipId, that.relationshipId) && Objects.equals(relationshipName, that.relationshipName) && Objects.equals(relationshipWeight, that.relationshipWeight) && Objects.equals(source, that.source) && Objects.equals(target, that.target);
     }
 
@@ -52,19 +51,19 @@ public class RelationshipEntity {
         this.relationshipWeight = relationshipWeight;
     }
 
-    public NodeEntity getSource() {
+    public AccountNodeEntity getSource() {
         return source;
     }
 
-    public void setSource(NodeEntity source) {
+    public void setSource(AccountNodeEntity source) {
         this.source = source;
     }
 
-    public NodeEntity getTarget() {
+    public AccountNodeEntity getTarget() {
         return target;
     }
 
-    public void setTarget(NodeEntity target) {
+    public void setTarget(AccountNodeEntity target) {
         this.target = target;
     }
 }

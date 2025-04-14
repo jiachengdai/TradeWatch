@@ -7,9 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface ReportService {
-    void makeReport(MultipartFile file, String algorithm, String datawrite, String multialgo);
+    void makeReport(MultipartFile file, String algorithm, String datawrite, String multialgo) throws Exception;
 
     List<Report> getAllReports();
 
     ReportContent getReportContent(Integer reportId);
+
+    String getReportName(Integer reportId);
 }
