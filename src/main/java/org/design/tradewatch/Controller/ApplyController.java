@@ -21,7 +21,7 @@ public class ApplyController {
     public Result newApply(@RequestParam MultipartFile file,String algorithm, String datawrite, String multialgo) throws Exception {
         applyService.newApply(algorithm,datawrite,multialgo);
 
-        applyService.analyze(file.getOriginalFilename(),algorithm);
+//        applyService.analyze(file.getOriginalFilename(),algorithm);
         reportService.makeReport(file,algorithm,datawrite,multialgo);
         return Result.success();
     }

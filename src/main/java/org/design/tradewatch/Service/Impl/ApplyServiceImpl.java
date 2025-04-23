@@ -34,25 +34,25 @@ public class ApplyServiceImpl implements ApplyService {
       applyMapper.newApply( userid,applytime,algorithm,datawrite,multialgo);
     }
 
-    @Override
-    public void analyze(String originalFilename, String algorithm) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        System.out.println(originalFilename+algorithm);
-        Map<String, String> requestBody = Map.of(
-            "filename", originalFilename,
-            "method", algorithm
-        );
-
-        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-
-        // 调用 9090 端口的接口
-        String targetUrl = "http://localhost:9090/analyze";
-        ResponseEntity<String> response = new RestTemplate().postForEntity(targetUrl, requestEntity, String.class);
-
-        // 打印返回结果
-        System.out.println("Response from 9090: " + response.getBody());
-    }
+//    @Override
+//    public void analyze(String originalFilename, String algorithm) {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        System.out.println(originalFilename+algorithm);
+//        Map<String, String> requestBody = Map.of(
+//            "filename", originalFilename,
+//            "method", algorithm
+//        );
+//
+//        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+//
+//        // 调用 9090 端口的接口
+//        String targetUrl = "http://8.153.204.9:9090/analyze";
+//        ResponseEntity<String> response = new RestTemplate().postForEntity(targetUrl, requestEntity, String.class);
+//
+//        // 打印返回结果
+//        System.out.println("Response from 9090: " + response.getBody());
+//    }
 
 
 

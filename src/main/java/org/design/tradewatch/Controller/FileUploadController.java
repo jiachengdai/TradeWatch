@@ -27,25 +27,25 @@ public class FileUploadController {
         String fileName = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));
         String url = AliOssUtil.uploadFile(fileName, file.getInputStream());
 
-        // 创建 RestTemplate 实例
-        RestTemplate restTemplate = new RestTemplate();
-
-        // 构建请求头
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-
-        // 构建请求体
-        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("file", new MultipartInputStreamFileResource(file.getInputStream(), originalFilename));
-
-        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-
-        // 调用 9090 端口的接口
-        String targetUrl = "http://localhost:9090/upload";
-        ResponseEntity<String> response = restTemplate.postForEntity(targetUrl, requestEntity, String.class);
-
-        // 打印返回结果
-        System.out.println("Response from 9090: " + response.getBody());
+//        // 创建 RestTemplate 实例
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        // 构建请求头
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+//
+//        // 构建请求体
+//        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+//        body.add("file", new MultipartInputStreamFileResource(file.getInputStream(), originalFilename));
+//
+//        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+//
+//        // 调用 9090 端口的接口
+//        String targetUrl = "http://8.153.204.9:9090/upload";
+//        ResponseEntity<String> response = restTemplate.postForEntity(targetUrl, requestEntity, String.class);
+//
+//        // 打印返回结果
+//        System.out.println("Response from 9090: " + response.getBody());
 
         return Result.success(url);
     }
